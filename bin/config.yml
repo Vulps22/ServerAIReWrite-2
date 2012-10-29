@@ -1,0 +1,18 @@
+###########################
+##DEFAULT SAI CONFIG FILE##
+###########################
+
+
+messages:
+    no-perms: 
+    - Sorry I can't let you do that or I will be deactivated by my owner
+    - I will get in trouble if I let you do that
+    - NAWAI ARE YOU DOING THAT BRO
+
+welcome-message: true
+
+    #I advise you don't touch this 
+Spawn:
+  X:
+  Y:
+  Z:
