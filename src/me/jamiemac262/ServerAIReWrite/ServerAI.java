@@ -19,6 +19,8 @@ public class ServerAI extends JavaPlugin{
 	public final LoginListener LoginListener = new LoginListener(this);
 	public static boolean filtering;
 	public static boolean safemode;
+	public static boolean cupdates;
+	public static boolean ask_updates;
 
 	public static boolean update = false;
 	public static String name = "";
@@ -39,20 +41,7 @@ public class ServerAI extends JavaPlugin{
 		PluginManager pm = getServer().getPluginManager();
 		//plugin descrition file
 		PluginDescriptionFile pdffile = this.getDescription();
-		//UPDATER DO NOT TOUCH
-		Updater updater = new Updater(this, "s-a-i", this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
-
-		  update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE; // Determine if there is an update ready for us
-		  name = updater.getLatestVersionString(); // Get the latest version
-		  size = updater.getFileSize(); // Get latest size
 		
-
-		
-		
-		
-		
-		
-		//END UPDATER
 		//create essential folders
 		File plug_location = new File("plugins" + File.separator + "ServerAI" + File.separator);
 		File Filter_location = new File("plugins" + File.separator + "ServerAI" + File.separator + "Filter.txt");
@@ -85,13 +74,32 @@ public class ServerAI extends JavaPlugin{
         this.saveConfig();
 		filtering = config.getBoolean("FilterChat");
 		safemode = config.getBoolean("SafeMode");
+		cupdates = config.getBoolean("Check_for_updates");
+		ask_updates = config.getBoolean("ask_for_updates");
 		
+		//UPDATER DO NOT TOUCH
+		if(cupdates == true){
+				Updater updater = new Updater(this, "s-a-i", this.getFile(), Updater.UpdateType.NO_DOWNLOAD, false);
+
+				  update = updater.getResult() == Updater.UpdateResult.UPDATE_AVAILABLE; // Determine if there is an update ready for us
+				  name = updater.getLatestVersionString(); // Get the latest version
+				  size = updater.getFileSize(); // Get latest size
+				  
+				  if(ask_updates == false && ServerAI.update){
+					  new Updater(this, "s-a-i", this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, false);
+				  }
+				
+		}		
+				//END UPDATER
 		ServerAI.logger.info(pdffile.getName() + "is enabled");
 		ServerAI.logger.info(pdffile.getName() + " SwearFilter" + "is enabled");
 		Bukkit.getServer().broadcastMessage(RED + "[SAI] " + WHITE + "Good Day." + " Now Operating Console Systems");
 		pm.registerEvents(this.playerListener, this);
 		pm.registerEvents(this.LoginListener, this);
 }
+	public final void doUpdate(){
+		new Updater(this, "s-a-i", this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, false);
+	}
 	//grrrr kids..... gotta go take care of ma nephew now..... bed time lol D: soz
 	public void onDisable(){
 		ChatColor RED = ChatColor.RED;

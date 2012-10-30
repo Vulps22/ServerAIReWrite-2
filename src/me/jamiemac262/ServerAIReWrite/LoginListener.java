@@ -14,12 +14,10 @@ import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
 import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
-import org.bukkit.event.player.PlayerChatEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.plugin.java.JavaPlugin;
 
-@SuppressWarnings("deprecation")
 public class LoginListener implements Listener{
 
 	public static ServerAI plugin;
@@ -42,6 +40,7 @@ public class LoginListener implements Listener{
 }
 	public void onPlayerJoin(PlayerJoinEvent event){
 		Player player = event.getPlayer();
+		if(ServerAI.ask_updates == true){
 		  if(player.hasPermission("sai.admin") && ServerAI.update)
 		  {
 			  new SendPrivateAIMessage(player, 0.5,"I have an update available!, please ask me to update","My AI has been improved, If you ask, i can update?","There is an update available for my Systems. You need to ask me to download and install it?");
@@ -49,6 +48,7 @@ public class LoginListener implements Listener{
 		    player.sendMessage("Type a sentence with the words 'sai' and 'update' if you would like to update.");
 		  }
 
+		}
 	}
 	
 

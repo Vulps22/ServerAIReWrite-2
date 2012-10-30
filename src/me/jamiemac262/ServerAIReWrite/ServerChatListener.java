@@ -250,6 +250,12 @@ public class ServerChatListener implements Listener{
 				}
 			}
 		
+		if((containsString(Playermessage, "sai") && containsString(Playermessage, "update"))){
+			if(p.hasPermission("sai.admin")){
+			ServerAI.doUpdate();
+				}
+		}
+		
 		if(containsString(Playermessage, "sai") && containsString(Playermessage, "kill")){
 			if(p.hasPermission("sai.kill")){
 			Player target = findPlayerInArray(Playermessage);

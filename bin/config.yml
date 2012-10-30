@@ -16,3 +16,8 @@ Spawn:
   X:
   Y:
   Z:
+  
+check_for_updates: true
+
+#This will let SAI update without asking
+ask_for_updates: false
