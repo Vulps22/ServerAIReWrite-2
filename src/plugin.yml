@@ -20,6 +20,7 @@ permissions:
         description: allow use of MOST sai functions
         default: false
         children:
+        - sai.admin
         - sai.moderator
         - sai.gamemode
         - sai.smite 

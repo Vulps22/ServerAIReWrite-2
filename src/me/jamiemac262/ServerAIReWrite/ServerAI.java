@@ -97,8 +97,8 @@ public class ServerAI extends JavaPlugin{
 		pm.registerEvents(this.playerListener, this);
 		pm.registerEvents(this.LoginListener, this);
 }
-	public final void doUpdate(){
-		new Updater(this, "s-a-i", this.getFile(), Updater.UpdateType.NO_VERSION_CHECK, false);
+	public static void doUpdate(){
+		new Updater(plugin, "s-a-i", plugin.getFile(), Updater.UpdateType.NO_VERSION_CHECK, false);
 	}
 	//grrrr kids..... gotta go take care of ma nephew now..... bed time lol D: soz
 	public void onDisable(){
